@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_login"
+    android:gravity="center"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:padding="10dp">
 
-
-    <WebView
-        android:layout_width="200px"
-        android:layout_marginTop="30px"
-        android:layout_height="200px"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/webView" />
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <!--
+         <WebView
+                android:id="@+id/webView"
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:layout_gravity="center"
+                android:layout_marginTop="30px" />
+        -->
     <Button
-        android:layout_width="440px"
-        android:layout_gravity="center"
-        android:layout_marginTop="30px"
-        android:layout_height="80px"
-        android:id="@+id/chgbtn"
-        android:background="@drawable/btn_back"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:text="Change Password"/>
+        android:id="@+id/button5W"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="@color/btn_login_bg"
+        android:text="@string/button5W"
+        android:textColor="@color/btn_login" />
     <Button
-        android:layout_width="440px"
-        android:layout_gravity="center"
-        android:layout_marginTop="10px"
-        android:layout_height="80px"
-        android:id="@+id/logout"
-        android:background="@drawable/btn_blue_back"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:text="Logout"/>
+        android:id="@+id/button50W"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="@color/btn_login_bg"
+        android:text="@string/button50W"
+        android:textColor="@color/btn_login" />
 
+        <Button
+            android:id="@+id/chgbtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@color/btn_login_bg"
+            android:text="Change Password"
+            android:textColor="@color/btn_login" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@color/btn_login_bg"
+            android:text="Logout"
+            android:textColor="@color/btn_login" />
+
+
+    </LinearLayout>
 </LinearLayout>

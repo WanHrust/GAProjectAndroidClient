@@ -3,33 +3,34 @@ package com.example.rustam.gaprojectandroidclient;
 /**
  * Created by Rustam on 3/6/2016.
  */
-        import java.io.BufferedReader;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.io.UnsupportedEncodingException;
-        import java.util.List;
-        import java.util.concurrent.ExecutionException;
 
-        import org.apache.http.HttpEntity;
-        import org.apache.http.HttpResponse;
-        import org.apache.http.NameValuePair;
-        import org.apache.http.client.ClientProtocolException;
-        import org.apache.http.client.entity.UrlEncodedFormEntity;
-        import org.apache.http.client.methods.HttpPost;
-        import org.apache.http.impl.client.DefaultHttpClient;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-        import android.os.AsyncTask;
-        import android.util.Log;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
+import android.util.Log;
 
 public class ServerRequest {
 
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
-
+    JSONObject jobj;
 
     public ServerRequest() {
 
@@ -82,16 +83,16 @@ public class ServerRequest {
         return jObj;
 
     }
-    JSONObject jobj;
+
     public JSONObject getJSON(String url, List<NameValuePair> params) {
 
-        Params param = new Params(url,params);
+        Params param = new Params(url, params);
         Request myTask = new Request();
-        try{
-            jobj= myTask.execute(param).get();
-        }catch (InterruptedException e) {
+        try {
+            jobj = myTask.execute(param).get();
+        } catch (InterruptedException e) {
             e.printStackTrace();
-        }catch (ExecutionException e){
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
         return jobj;
@@ -116,7 +117,7 @@ public class ServerRequest {
         protected JSONObject doInBackground(Params... args) {
 
             ServerRequest request = new ServerRequest();
-            JSONObject json = request.getJSONFromUrl(args[0].url,args[0].params);
+            JSONObject json = request.getJSONFromUrl(args[0].url, args[0].params);
 
             return json;
         }

@@ -3,6 +3,7 @@ package com.example.rustam.gaprojectandroidclient;
 /**
  * Created by Rustam on 3/6/2016.
  */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,11 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class RegisterActivity extends Activity {
-    EditText email,password,firstname,lastname,city,street;
-    Button login,register;
-    String emailtxt,passwordtxt, firstnametxt, lastnametxt, citytxt, streettxt;
+    EditText email, password, firstname, lastname, city, street;
+    Button login, register;
+    String emailtxt, passwordtxt, firstnametxt, lastnametxt, citytxt, streettxt;
     List<NameValuePair> params;
     String serverName;
 
@@ -34,19 +34,19 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         serverName = getString(R.string.serverName);
-        email = (EditText)findViewById(R.id.email);
-        password = (EditText)findViewById(R.id.password);
-        firstname = (EditText)findViewById(R.id.firstname);
-        lastname = (EditText)findViewById(R.id.lastname);
-        city = (EditText)findViewById(R.id.city);
-        street = (EditText)findViewById(R.id.street);
-        register = (Button)findViewById(R.id.registerbtn);
-        login = (Button)findViewById(R.id.login);
+        email = (EditText) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.password);
+        firstname = (EditText) findViewById(R.id.firstname);
+        lastname = (EditText) findViewById(R.id.lastname);
+        city = (EditText) findViewById(R.id.city);
+        street = (EditText) findViewById(R.id.street);
+        register = (Button) findViewById(R.id.registerbtn);
+        login = (Button) findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent regactivity = new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent regactivity = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(regactivity);
                 finish();
             }
@@ -72,25 +72,23 @@ public class RegisterActivity extends Activity {
                 params.add(new BasicNameValuePair("street", streettxt));
 
                 ServerRequest sr = new ServerRequest();
-                JSONObject json = sr.getJSON(serverName+"register",params);
+                JSONObject json = sr.getJSON(serverName + "register", params);
                 //JSONObject json = sr.getJSON("http://192.168.56.1:8080/register",params);
 
-                if(json != null){
-                    try{
+                if (json != null) {
+                    try {
                         String jsonstr = json.getString("response");
 
-                        Toast.makeText(getApplication(),jsonstr,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplication(), jsonstr, Toast.LENGTH_LONG).show();
 
                         Log.d("Hello", jsonstr);
-                    }catch (JSONException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             }
         });
     }
-
-
 
 
 }
