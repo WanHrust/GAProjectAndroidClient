@@ -27,7 +27,7 @@
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
-    <string name="serverName">http://192.168.1.106:8080/</string>
+    <string name="serverName">http://192.168.1.102:8080/</string>
     <string name="button5W">Lightbulb (5W)</string>
     <string name="button50W">Boiler (50W)</string>
 
