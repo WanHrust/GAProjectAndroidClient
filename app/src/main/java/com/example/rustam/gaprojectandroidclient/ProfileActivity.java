@@ -121,9 +121,9 @@ public class ProfileActivity extends Activity {
         }
         if (gcmMessage != null && !gcmMessage.isEmpty()) {
 
-            //int requiedAmount = bundle.getInt("gcmrequiredamount");
+            String requiedAmount = bundle.getString("gcmrequiredamount");
             tvMain.setText(gcmMessage);
-            //tvRequiredAmaunt.setText(requiedAmount);
+            tvRequiredAmaunt.setText(requiedAmount);
             if (!btnSubmit.isEnabled()) btnSubmit.setEnabled(true);
             if (btnSubmit.getVisibility() != View.VISIBLE) btnSubmit.setVisibility(View.VISIBLE);
 //            if (!action50W.isEnabled()) action50W.setEnabled(true);

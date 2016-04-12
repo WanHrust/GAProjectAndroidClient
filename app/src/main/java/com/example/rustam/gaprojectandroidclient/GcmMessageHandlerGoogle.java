@@ -22,13 +22,13 @@ public class GcmMessageHandlerGoogle extends GcmListenerService {
     public void onMessageReceived(String from, Bundle data) {
         String message = data.getString("message");
         String title = data.getString("title");
-        //String requiredAmount = data.getString("requiredAmount");
+        String requiredAmount = data.getString("requiredAmount");
         //Log.d("GCM*", message);
-        createNotification(title, message);
+        createNotification(title, message, requiredAmount);
     }
 
     // Creates notification based on title and body received
-    private void createNotification(String title, String body) {
+    private void createNotification(String title, String body, String requiredAmount) {
         Context context = getBaseContext();
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher).setContentTitle(title)
@@ -37,7 +37,7 @@ public class GcmMessageHandlerGoogle extends GcmListenerService {
 
         Intent resultIntent = new Intent(this, ProfileActivity.class);
         resultIntent.putExtra("gcmmessage", body);
-        //resultIntent.putExtra("gcmrequiredamount", requiredAmaunt);
+        resultIntent.putExtra("gcmrequiredamount", requiredAmount);
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
