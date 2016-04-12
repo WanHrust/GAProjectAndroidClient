@@ -78,7 +78,8 @@ public class LoginActivity extends Activity {
                             //Storing Data using SharedPreferences
                             edit.putString("token", token);
                             edit.putString("grav", grav);
-                            edit.putString("usermail", "user1");
+                            edit.putString("userLogged", "user1");
+                            edit.putString("userEmail", emailtxt);
                             edit.commit();
                             Intent profactivity = new Intent(LoginActivity.this, ProfileActivity.class);
 
@@ -133,6 +134,8 @@ public class LoginActivity extends Activity {
                                     code = (EditText) reset.findViewById(R.id.code);
                                     newpass = (EditText) reset.findViewById(R.id.npass);
                                     cancel1 = (Button) reset.findViewById(R.id.cancel);
+
+
                                     cancel1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -154,11 +157,12 @@ public class LoginActivity extends Activity {
                                             //JSONObject json = sr.getJSON("http://10.0.2.2:8080/api/resetpass/chg", params);
                                             JSONObject json = sr.getJSON(serverName + "api/resetpass/chg", params);
 
+
                                             if (json != null) {
                                                 try {
-
                                                     String jsonstr = json.getString("response");
                                                     if (json.getBoolean("res")) {
+
                                                         reset.dismiss();
                                                         Toast.makeText(getApplication(), jsonstr, Toast.LENGTH_LONG).show();
 

@@ -1,4 +1,4 @@
-package com.hmkcode.android.gcm;
+package com.example.rustam.gaprojectandroidclient;
 
 import android.app.Activity;
 import android.content.ComponentName;

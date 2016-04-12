@@ -6,6 +6,7 @@ package com.example.rustam.gaprojectandroidclient;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,8 @@ public class RegisterActivity extends Activity {
     String regid;
     String PROJECT_NUMBER = "310394170924";
 
+    SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,9 @@ public class RegisterActivity extends Activity {
         street = (EditText) findViewById(R.id.street);
         register = (Button) findViewById(R.id.registerbtn);
         login = (Button) findViewById(R.id.login);
+
+        pref = getSharedPreferences("AppPref", MODE_PRIVATE);
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

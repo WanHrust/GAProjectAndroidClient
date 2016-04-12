@@ -1,4 +1,4 @@
-package com.hmkcode.android.gcm;
+package com.example.rustam.gaprojectandroidclient;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
