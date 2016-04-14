@@ -33,10 +33,10 @@ public class ProfileActivity extends Activity {
     String token, grav, oldpasstxt, newpasstxt, userLogged, userEmail;
     WebView web;
     TextView tvMain, tvProgressPercent, tvRequiredAmaunt;
-    Button chgpass, chgpassfr, cancel, logout, btnSubmit, action50W;
+    Button chgpass, chgpassfr, cancel, logout, btnSubmit, action50W, btnNotHome;
     LinearLayout llLightBulb, llOven, llBoiler, llOther, llNotHome;
     CheckBox chkBoxLightBulb, chkBoxOven, chkBoxBoiler, chkBoxOther, chkBoxNotHome;
-    int totalPower = 0, storedChoicePower;
+    int storedChoicePower;
     Dialog dlg;
     EditText oldpass, newpass;
     List<NameValuePair> params;
@@ -95,6 +95,7 @@ public class ProfileActivity extends Activity {
         tvProgressPercent = (TextView) findViewById(R.id.tvProgressPercent);
         tvRequiredAmaunt = (TextView) findViewById(R.id.tvRequiredAmount);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        btnNotHome = (Button) findViewById(R.id.btnNotHome);
         //action50W = (Button) findViewById(R.id.button50W);
 
         llOven = (LinearLayout) findViewById(R.id.llOven);
@@ -105,9 +106,6 @@ public class ProfileActivity extends Activity {
 
         llOther = (LinearLayout) findViewById(R.id.llOther);
         chkBoxOther = (CheckBox) findViewById(R.id.chkBoxOther);
-
-        llNotHome = (LinearLayout) findViewById(R.id.llNotHome);
-        chkBoxNotHome = (CheckBox) findViewById(R.id.chkBoxNotHome);
 
         llLightBulb = (LinearLayout) findViewById(R.id.llLightBulb);
         chkBoxLightBulb = (CheckBox) findViewById(R.id.chkBoxLightBulb);
@@ -160,10 +158,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (!chkBoxLightBulb.isChecked()) {
-                    totalPower += 5;
                     chkBoxLightBulb.setChecked(true);
                 } else {
-                    totalPower -= 5;
                     chkBoxLightBulb.setChecked(false);
                 }
             }
@@ -173,10 +169,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (!chkBoxOven.isChecked()) {
-                    totalPower += 400;
                     chkBoxOven.setChecked(true);
                 } else {
-                    totalPower -= 400;
                     chkBoxOven.setChecked(false);
                 }
             }
@@ -185,36 +179,9 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (!chkBoxBoiler.isChecked()) {
-                    totalPower += 1000;
                     chkBoxBoiler.setChecked(true);
                 } else {
-                    totalPower -= 1000;
                     chkBoxBoiler.setChecked(false);
-                }
-            }
-        });
-        llOther.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!chkBoxOther.isChecked()) {
-                    totalPower += 500;
-                    chkBoxOther.setChecked(true);
-                } else {
-                    totalPower -= 500;
-                    chkBoxOther.setChecked(false);
-                }
-            }
-        });
-        llNotHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!chkBoxNotHome.isChecked()) {
-                    storedChoicePower = totalPower;
-                    totalPower = 0;
-                    chkBoxNotHome.setChecked(true);
-                } else {
-                    totalPower = storedChoicePower;
-                    chkBoxNotHome.setChecked(false);
                 }
             }
         });
@@ -222,6 +189,12 @@ public class ProfileActivity extends Activity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                int totalPower = 0;
+
+                if (chkBoxOven.isChecked()) totalPower += 500;
+                if (chkBoxLightBulb.isChecked()) totalPower += 5;
+                if (chkBoxBoiler.isChecked()) totalPower += 1000;
 
                 params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("action", String.valueOf(totalPower)));
@@ -234,7 +207,6 @@ public class ProfileActivity extends Activity {
                         String jsonstr = json.getString("response");
                         if (json.getBoolean("res")) {
                             Toast.makeText(getApplication(), jsonstr, Toast.LENGTH_SHORT).show();
-                            totalPower = 0;
                         } else {
                             Toast.makeText(getApplication(), jsonstr, Toast.LENGTH_SHORT).show();
 
@@ -255,6 +227,40 @@ public class ProfileActivity extends Activity {
             }
         });
 
+        btnNotHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("action", "0"));
+                params.add(new BasicNameValuePair("userEmail", userEmail));
+                ServerRequest sr = new ServerRequest();
+                JSONObject json = sr.getJSON(serverName + "api/action", params);
+
+                if (json != null) {
+                    try {
+                        String jsonstr = json.getString("response");
+                        if (json.getBoolean("res")) {
+                            Toast.makeText(getApplication(), jsonstr, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplication(), jsonstr, Toast.LENGTH_SHORT).show();
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                if (btnSubmit.isEnabled()) btnSubmit.setEnabled(false);
+                if (btnSubmit.getVisibility() == View.VISIBLE) btnSubmit.setVisibility(View.GONE);
+//                if (action50W.isEnabled()) action50W.setEnabled(false);
+//                if (action50W.getVisibility() == View.VISIBLE) action50W.setVisibility(View.GONE);
+
+                tvMain.setText("Thank you. Penguins feel safer now!");
+
+            }
+        });
 
         // web.getSettings().setUseWideViewPort(true);
         //web.getSettings().setLoadWithOverviewMode(true);

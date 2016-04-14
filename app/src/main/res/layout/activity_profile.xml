@@ -210,79 +210,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llOther"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top"
-                    android:contentDescription="background"
-                    android:src="@mipmap/orange_box" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Other"
-                    android:textColor="#000000"
-                    android:textSize="20dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:paddingRight="20dp">
-
-                    <CheckBox
-                        android:id="@+id/chkBoxOther"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:onClick="onCheckboxClicked" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:id="@+id/llNotHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top"
-                    android:contentDescription="background"
-                    android:src="@mipmap/magneta_box" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/NotHome"
-                    android:textColor="#000000"
-                    android:textSize="20dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:paddingRight="20dp">
-
-                    <CheckBox
-                        android:id="@+id/chkBoxNotHome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:onClick="onCheckboxClicked" />
-                </LinearLayout>
-            </LinearLayout>
 
             <LinearLayout
 
@@ -293,11 +220,10 @@
 
                 <Button
                     android:id="@+id/logout"
-                    android:layout_width="0px"
-                    android:layout_height="0px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dip"
                     android:background="@null"
-                    android:enabled="false"
                     android:text="Logout"
                     android:textAlignment="center"
                     android:textAllCaps="false"
@@ -315,6 +241,16 @@
                     android:textColor="#FFFFFF"
                     android:textSize="20dp" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnNotHome"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="@color/btnSubmit_bg"
+                android:text="@string/NotHome"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
         </LinearLayout>
 
         <!--
